@@ -1,33 +1,25 @@
-<script>
+
+        <script>
             const API_URL = "https://script.google.com/macros/s/AKfycbxu59eNH8lSjsVwHRrhxj1eBlM6ZLViupjrVswvFhVsqKaj3NsLnOrS01RlwSNswaGyFA/exec";
 
 
             const adList = [{
-                    url: "https://youtu.be/f-9IaGAlgEA",
-                    img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiNieRjpuAX6e4AHXvGRMn0CzkmKbsfhzMyuzjyalisdj0dHeMPVBtsgvccxMDbaxnRhvnwe-OJ9qo6V7UIeQ7YjsKjbssmiRvUtro9P4OCDywKHthNAWlIjBIbt5ZrhaZqs20imAxkoiYgCKiVach-sZLDOoGxPIjroz4dC6Br5g4w5GCFbiXegdXVHp8/s1600/channels4_banner.jpg"
+                    url: "https://baithkeenews.blogspot.com",
+                    img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgA7BkQyjbuST-pSEhjdyChzMYQuEi6KceSxTKvnPepdxQmmzvz9zJDi0f8Ya99xIU6rN5zPv16j_ghwz4dL6-w_G0HbIugqJmyAyqVC7MvQJ5yegnKSocS56QtKkx_Q9vuzGUQTlfpB6IOFXTHnZReseeLDUkRnIdmsoPvSncxkpQsSw/s1600/%E0%A4%AC%E0%A4%BF%E0%A4%A8%E0%A4%BE_20260420_130248_0000.png"
                 },
                 {
-                    url: "https://youtu.be/w0D_wOJa21g",
-                    img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhoLzti-0_KPDHfuyXn7-rA44nmc0Z5ZyTEczCHC5aufsSsUXsT_kGPs06AQS7ulK33MyI0lKdV_M0GN3hTCPL3B3tcUx9heblAe_CRIyQJVaIxQTHf5AwcMliiLQL9lMJPfJ0irrov5Fx6UYHPIbA5gDd0Le_xOy7JRG_wOV6Q15i4AMNpA62-So_h_c/s1600/channels4_banner%20%281%29.jpg"
+                    url: "https://play.google.com/store/apps/details?id=com.useme.wallet&referrer=UM22040",
+                    img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVG1g36WUUTF9Fc9mE6UTUpOmf_uXQICYOLAydWD6An5G1_bZPwuWRiJPb0-zlhF0f7WGMbiULF0ukm5ZViKx1dBWXdYqSob1zQpH8ommRCERscT0ekJwZOUhJuWDl9tc71amP_4ysU8JVqvtKRPI5bQJy2smplu0s86rbM2qwmIeIoQ/s1600/IMG-20260419-WA0009.jpg"
                 },
                 {
-                    url: "https://youtu.be/JUhcNNwha7w",
-                    img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBjBKO0cS9k1KqrBX4kJ0Q63NGN8nN28jRpsQkqL8I2eD3fdlfkYdrOycjrMzOfSt0ysAqfpxHE4W6HMdyFUbTsiXUAX6S_g-8VukWsqyOc92nuqmvdYNwoe3eo1maXjGWQlh_-KifhHrNjlSez7jzLHoQ6By12AXkOHiaD2hyphenhyphenrx2TXYkBR0zz-yi3on4/s320/channels4_banner%20%282%29.jpg"
+                    url: "https://baithkeenews.blogspot.com",
+                    img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhB56SmKrRX1ro5t5S4tu6-s2gWdkGLFIT-5mADSCBqra2XpZFnWE3akPKXeNcABpweYsnEktxqb8sw_rxD4Um-lOTU71R3RhkLznGDr7blMIblUeVbki1YIVZVuSU983VkLiJ8UoXCbBW1kRz7aD5-xqK6kdS55lSceHz3ZEJ-ChVkJA/s1600/jeremy-bishop-4kv4odtKd0U-unsplash-picsay.jpg"
                 }
             ];
-        </script>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-       <script>
-           
-           
+        
+        
+        
+        
 
         
             let userLoc = {
@@ -626,11 +618,9 @@
       
 
        
-           
-       </script>
-       
-
-<script>
+        
+        
+        
             function shareApplication() {
                 const appUrl = "https://baithkeenews.blogspot.com"; //"https://tinyurl.com/mry6tfmp";//
 
