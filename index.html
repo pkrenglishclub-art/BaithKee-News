@@ -521,24 +521,70 @@
 
         function previewSingleImage(e) { const file = e.target.files[0]; if (!file) return; document.getElementById("uploadLabel").innerText = "⏳ फोटो प्रोसेस हो रही है..."; let reader = new FileReader(); reader.readAsDataURL(file); reader.onload = (event) => { let img = new Image(); img.src = event.target.result; img.onload = () => { let canvas = document.createElement('canvas'); let MAX_WIDTH = 400; let scale = img.width > MAX_WIDTH ? (MAX_WIDTH / img.width) : 1; canvas.width = img.width * scale; canvas.height = img.height * scale; let ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, canvas.width, canvas.height); base64Image = canvas.toDataURL('image/jpeg', 0.4); document.getElementById("imgPreviewArea").innerHTML = `<img src="${base64Image}" style="width:100px; height:100px; object-fit:cover; border-radius:12px; border: 2px solid var(--primary);">`; document.getElementById("uploadLabel").innerText = "✅ फोटो सेलेक्ट हो गई"; }; }; }
 
-        async function publishNews() {
-            const head = document.getElementById("headInput").value; const body = document.getElementById("bodyInput").value; const loc = document.getElementById("locInput").value;
-            if (!head || !body || !loc) return showToast("Headline, Details aur Location भरना जरूरी है!");
-            document.getElementById("submitBtn").disabled = true; document.getElementById("submitText").innerText = "खबर पब्लिश हो रही है..."; document.getElementById("submitLoader").style.display = "block";
-            const payload = { action: editingNewsId ? "editNews" : "postNews", id: editingNewsId, headline: head, text: body, imageUrl: base64Image, locationName: loc, username: userData.name, email: userData.email, photo: userData.photo, latitude: userLoc.lat, longitude: userLoc.lon };
-            try {
-                let res = await fetch(API_URL, { method: "POST", body: JSON.stringify(payload) });
-                let text = await res.text();
-                if (text === "blocked") {
-                    showToast("🚨 आपका अकाउंट ब्लॉक है। आप पोस्ट नहीं कर सकते!");
-                } else {
-                    showToast(editingNewsId ? "खबर अपडेट हो गई!" : "खबर पब्लिश हो गई");
-                    document.getElementById("headInput").value = ""; document.getElementById("bodyInput").value = ""; document.getElementById("locInput").value = ""; document.getElementById("imgInput").value = ""; document.getElementById("imgPreviewArea").innerHTML = ""; document.getElementById("uploadLabel").innerText = "📸 1 फोटो चुनें (Optional)"; base64Image = ""; editingNewsId = null;
+                    async function publishNews() {
+                const head = document.getElementById("headInput").value;
+                const body = document.getElementById("bodyInput").value;
+                const loc = document.getElementById("locInput").value;
+
+                if (!head || !body || !loc) return showToast("Headline, Details aur Location भरना जरूरी है!");
+
+                document.getElementById("submitBtn").disabled = true;
+                document.getElementById("submitText").innerText = "खबर पब्लिश हो रही है...";
+                document.getElementById("submitLoader").style.display = "block";
+
+                const payload = {
+                    action: editingNewsId ? "editNews" : "postNews",
+                    id: editingNewsId,
+                    headline: head,
+                    text: body,
+                    imageUrl: base64Image,
+                    locationName: loc,
+                    username: userData.name,
+                    email: userData.email,
+                    photo: userData.photo,
+                    latitude: userLoc.lat,
+                    longitude: userLoc.lon
+                };
+
+                try {
+                    let res = await fetch(API_URL, {
+                        method: "POST",
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    // बैकएंड का असली जवाब पढ़ना
+                    let text = await res.text(); 
+                    
+                    if (text === "blocked") {
+                        showToast("🚨 आपका अकाउंट ब्लॉक है। आप पोस्ट नहीं कर सकते!");
+                    } else if (text.startsWith("error")) {
+                        // अगर बैकएंड से एरर आएगा, तो स्क्रीन पर दिखेगा
+                        showToast("सर्वर एरर: " + text); 
+                        console.log("Backend Error: ", text);
+                    } else {
+                        // जब 100% सक्सेस होगा, तभी फॉर्म खाली होगा
+                        showToast(editingNewsId ? "खबर अपडेट हो गई!" : "खबर पब्लिश हो गई");
+                        document.getElementById("headInput").value = "";
+                        document.getElementById("bodyInput").value = "";
+                        document.getElementById("locInput").value = "";
+                        document.getElementById("imgInput").value = "";
+                        document.getElementById("imgPreviewArea").innerHTML = "";
+                        document.getElementById("uploadLabel").innerText = "📸 1 फोटो चुनें (Optional)";
+                        base64Image = "";
+                        editingNewsId = null;
+                        closeWithAnimation("publishOverlay");
+                        fetchNews();
+                    }
+                } catch (err) {
+                    console.log(err);
+                    showToast("Process में दिक्कत आई, इंटरनेट चेक करें!");
                 }
-            } catch (err) { console.log(err); showToast("Process में दिक्कत आई!"); }
-            document.getElementById("submitBtn").disabled = false; document.getElementById("submitText").innerText = "खबर पब्लिश करें"; document.getElementById("submitLoader").style.display = "none";
-            closeWithAnimation("publishOverlay"); fetchNews();
-        }
+
+                document.getElementById("submitBtn").disabled = false;
+                document.getElementById("submitText").innerText = "खबर पब्लिश करें";
+                document.getElementById("submitLoader").style.display = "none";
+            }
+
 
         function openEditMode() { let item = allNewsData.find(n => n.id === currentId); if (!item) return; document.getElementById("headInput").value = item.headline; document.getElementById("bodyInput").value = item.text; document.getElementById("locInput").value = item.locationName; if (item.image) { base64Image = item.image; document.getElementById("imgPreviewArea").innerHTML = `<img src="${item.image}" style="width:100px; height:100px; object-fit:cover; border-radius:12px; border: 2px solid var(--primary);">`; document.getElementById("uploadLabel").innerText = "✅ पुरानी फोटो लोडेड (बदलने के लिए क्लिक करें)"; } else { base64Image = ""; document.getElementById("imgPreviewArea").innerHTML = ""; document.getElementById("uploadLabel").innerText = "📸 1 फोटो चुनें (Optional)"; } editingNewsId = item.id; document.getElementById("submitText").innerText = "अपडेट करें"; closeWithAnimation('detailOverlay'); setTimeout(() => { document.getElementById("publishOverlay").style.display = 'flex'; }, 300); }
         function askDeleteConfirm() { document.getElementById("deleteConfirmOverlay").style.display = "flex"; }
