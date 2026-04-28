@@ -146,13 +146,14 @@
 
         // ⚠️ यहाँ Firebase Project से निकालकर अपना config डालें
         const firebaseConfig = {
-            apiKey: "AIzaSyAwpf0IEd0wl6mvJ6EV5XB3XQYoLwmWXZQ",
-            authDomain: "https://baithkee-news.firebaseapp.com",
-            projectId: "baithkee-news",
-            storageBucket: "https://baithkee-news.firebasestorage.app",
-            messagingSenderId: "274990392562",
-            appId: "274990392562"
-        };
+    apiKey: "AIzaSyAwpf0IEd0wl6mvJ6EV5XB3XQYoLwmWXZQ",
+    authDomain: "baithkee-news.firebaseapp.com",
+    projectId: "baithkee-news",
+    storageBucket: "baithkee-news.firebasestorage.app",
+    messagingSenderId: "274990392562",
+    appId: "1:274990392562:web:25c3b84d13fc84cdfbdc6b"
+};
+
 
         const app = initializeApp(firebaseConfig);
         const messaging = getMessaging(app);
