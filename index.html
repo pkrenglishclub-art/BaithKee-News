@@ -163,7 +163,7 @@
             Notification.requestPermission().then((permission) => {
                 if (permission === 'granted') {
                     // ⚠️ यहाँ अपनी VAPID Key डालें (Firebase Cloud Messaging settings से)
-                    getToken(messaging, { vapidKey: 'BFCJKzvh6YZ_hTsEZh4MWEz_wNFJou2J1JJDWhpNqlR_RaIifKxUaw6AwbVdefOAk2n_LtuofYmAkLll6-JBmfs' }).then((currentToken) => {
+                    getToken(messaging, { vapidKey: 'BO-rPlH96Q3AFKzlXKeqK72ApLc95QrwwlhCUP-jLMf3Q9jbYxJsq3yjvyp2o_s7OhbptuRl0YPu0B3Gk-BtRy0' }).then((currentToken) => {
 
                         if (currentToken) {
                             // टोकन मिलने पर उसे Apps Script को भेजकर सब्सक्राइब करें
